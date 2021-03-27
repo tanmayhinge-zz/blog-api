@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
+const bodyParser = require('body-parser');
 const postRoutes  =require("./routes/post");
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -23,11 +24,12 @@ mongoose.connection.on('error', err => {
 // };
 
 // //middleware
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 // app.use(useMiddleware)
 
-
+app.use(bodyParser.json());
 app.use("/", postRoutes);
+
 
 const port = process.env.PORT || 8000;
 //console.log(process.env.MONO_URI)
