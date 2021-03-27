@@ -1,11 +1,16 @@
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
-const { getPost } =require("./routes/post")
+const { getPost } =require("./routes/post");
 
+
+const useMiddleware = () => {
+    console.log("Middleware Applied");
+}
 
 //middleware
 app.use(morgan("dev"));
+app.use(useMiddleware)
 
 
 app.get("/", getPost);
